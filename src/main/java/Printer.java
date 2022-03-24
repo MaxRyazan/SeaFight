@@ -2,7 +2,7 @@
 public class Printer {
 
 
-    void refreshMaps(PlayerMap playerMap, CompMap compMap) {
+    void refreshMaps(Map playerMap, Map compMap) {
         System.out.println("                 Карта  игрока                                            Карта компьютера    ");
         System.out.print("   | ");
         for (int i = 0; i < TestMain.COL; i++) {
