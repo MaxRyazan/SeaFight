@@ -7,7 +7,8 @@ public class TestMain {
 
 
     public static void main(String[] args) {
-
+Game game = new Game(new Map(), new Gameplay(), new Printer(), new WinCheck());
+game.play();
 
     }
 }

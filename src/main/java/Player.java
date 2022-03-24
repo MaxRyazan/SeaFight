@@ -2,12 +2,19 @@
 import java.util.*;
 
 public class Player {
-    boolean isComputerPlayer;
-    String country;
-    String name;
-    Map playerMap;
+  private   boolean isComputerPlayer;
+  private   String country;
+  private   String name;
+  private final Map playerMap;
 
-    public Player(boolean isComputerPlayer,  String country,  String name, Map playerMap) {
+    List<String> defaultNames = new ArrayList<>();
+    List<String> defaultCountries = new ArrayList<>();
+
+    public Map getPlayerMap() {
+        return playerMap;
+    }
+
+    public Player(boolean isComputerPlayer, String country, String name) {
         this.isComputerPlayer = isComputerPlayer;
         this.country = country;
         this.name = name;
@@ -15,15 +22,21 @@ public class Player {
         playerMap.initializeMap();
     }
 
+
     public Player() {
+        this.playerMap = new Map();
+        playerMap.initializeMap();
     }
 
     Player setParameters() {
-        if (isComputerPlayer) {
-            name = "выборка из какого то енама";
-            country = "выборка из какого то енама";
-            return new Player(true, name, country, playerMap);
+       System.out.println("Этот игрок компьютер? Введите  + если ДА");
+       String identify = new Scanner(System.in).nextLine();
+       if(identify.equals("+")) {
+            isComputerPlayer = true;
+            name = setDefaultName() ;
+            country = setDefaultCountry();
         } else {
+           isComputerPlayer = false;
             while (true) {
                 System.out.print("Введите имя игрока : ");
                 name = new Scanner(System.in).nextLine();
@@ -34,7 +47,7 @@ public class Player {
                 }
             }
         }
-        return new Player(false, name, country, playerMap);
+        return new Player(isComputerPlayer, name, country);
     }
 
     void shot(Player player) {
@@ -49,7 +62,7 @@ public class Player {
                     playerMap.setSymbol(compRowShot, compColShot, "-");
                     break;
                 }else {
-                    if(Objects.equals(playerMap.getSymbol(compRowShot,compColShot), "0")) {
+                    if(Objects.equals(playerMap.getSymbol(compRowShot,compColShot), "X")) {
                         playerMap.setSymbol(compRowShot, compColShot, "!");
                         break;
                     }
@@ -66,7 +79,7 @@ public class Player {
                         playerMap.setSymbol(userRowShot, userColShot,  "-");
                         break;
                     } else {
-                        if (Objects.equals(playerMap.getSymbol(userRowShot, userColShot), "0")) {
+                        if (Objects.equals(playerMap.getSymbol(userRowShot, userColShot), "X")) {
                            playerMap.setSymbol(userRowShot,userColShot, "!");
                             break;
                         }
@@ -77,13 +90,32 @@ public class Player {
         }
     }
 
+    String setDefaultName() {
+        defaultNames.add("JASON");
+        defaultNames.add("DICK");
+        defaultNames.add("MONICA");
+        defaultNames.add("BILL");
+        defaultNames.add("EDDY");
+        defaultNames.add("BIG_DADDY");
+        Random random = new Random();
+        return  defaultNames.get(random.nextInt(6));
+    }
+
+    String setDefaultCountry() {
+        defaultCountries.add("USA");
+        defaultCountries.add("RUSSIA");
+        defaultCountries.add("CANADA");
+        defaultCountries.add("CHINA");
+        defaultCountries.add("PARAGVAI");
+        defaultCountries.add("YGANDA");
+        Random random = new Random();
+        return  defaultCountries.get(random.nextInt(6));
+    }
 
     @Override
     public String toString() {
-        return "Player{" +
-                "Играет компьютер? - " + isComputerPlayer +
-                ", country='" + country + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return
+               "name='" + name + '\'' +
+                ", country='" + country + '\'';
     }
 }

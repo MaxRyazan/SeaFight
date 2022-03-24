@@ -4,7 +4,11 @@ public class Map {
 
  public String[][] map = new String[TestMain.ROW][TestMain.COL];
 
- public void initializeMap() {
+    public String[][] getMap() {
+        return map;
+    }
+
+    public void initializeMap() {
      for (int i = 0; i < map.length; i++) {
          for (int j = 0; j < map.length; j++) {
              map[i][j] = " ";
@@ -20,7 +24,7 @@ public class Map {
         map[i][j] = "-";
     }
     public void setTrueShotSymbol(int i, int j) {
-        map[i][j] = "X";
+        map[i][j] = "!";
     }
 
     public String getSymbol(int i, int j){
