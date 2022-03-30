@@ -1,3 +1,4 @@
+package SeaFight;
 
 import java.util.Objects;
 
@@ -13,8 +14,11 @@ public class WinCheck {
                     }
                 }
             }
-            System.out.println("победа игрока " + value);
+            System.out.println("Победа игрока " + "   " + value.getCountry() + " from " + value.getName());
+            break;
         }
         return true;
     }
 }
+
+

@@ -1,9 +1,10 @@
+package SeaFight;
 
 public class Printer {
 
 
     void refreshMaps(Map playerMap, Map compMap) {
-        System.out.println("                 Карта  игрока1                                            Карта игрока2    ");
+        System.out.println("                 Карта  игрока1                                        Карта игрока2    ");
         System.out.print("   | ");
         for (int i = 0; i < TestMain.COL; i++) {
             if(i < 9) {

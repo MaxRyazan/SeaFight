@@ -1,18 +1,48 @@
+package SeaFight;
+
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public class Player {
   private   boolean isComputerPlayer;
   private   String country;
   private   String name;
   private final Map playerMap;
 
+    List<String> lineShip = new ArrayList<>();
+    List<String> frigate = new ArrayList<>();
+    List<String> corvette = new ArrayList<>();
+    List<String> sloops = new ArrayList<>();
+
+
+    public void setFrigate(List<String> frigate) {
+        this.frigate = frigate;
+    }
+
+    public void setCorvette(List<String> corvette) {
+        this.corvette = corvette;
+    }
+
+    public void setLineShip(List<String> lineShip) {
+        this.lineShip = lineShip;
+    }
+
+    public void setSloops(List<String> sloops) {
+        this.sloops = sloops;
+    }
+
     List<String> defaultNames = new ArrayList<>();
     List<String> defaultCountries = new ArrayList<>();
+
+
+
 
     public Map getPlayerMap() {
         return playerMap;
     }
+
 
     public Player(boolean isComputerPlayer, String country, String name) {
         this.isComputerPlayer = isComputerPlayer;
@@ -22,33 +52,40 @@ public class Player {
         playerMap.initializeMap();
     }
 
+    public boolean isComputerPlayer() {
+        return isComputerPlayer;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public Player() {
         this.playerMap = new Map();
         playerMap.initializeMap();
     }
 
-    Player setParameters() {
-       System.out.println("Этот игрок компьютер? Введите  + если ДА");
-       String identify = new Scanner(System.in).nextLine();
-       if(identify.equals("+")) {
+   public Player setParameters() {
+        System.out.println("Этот игрок компьютер? Введите  + если ДА");
+        String identify = new Scanner(System.in).nextLine();
+        if (identify.equals("+")) {
             isComputerPlayer = true;
-            name = setDefaultName() ;
-            country = setDefaultCountry();
+            return  new Player(true, setDefaultName(),  setDefaultCountry());
         } else {
-           isComputerPlayer = false;
-            while (true) {
+            isComputerPlayer = false;
+            do {
                 System.out.print("Введите имя игрока : ");
                 name = new Scanner(System.in).nextLine();
                 System.out.print("Введите страну игрока : ");
                 country = new Scanner(System.in).nextLine();
-                if(!(name.isBlank() && country.isBlank())) {
-                    break;
-                }
-            }
+            } while (!name.isBlank() || !country.isBlank());
         }
-        return new Player(isComputerPlayer, name, country);
-    }
+       return new Player(false, name, country);
+   }
 
     void shot(Player player) {
 
@@ -58,28 +95,30 @@ public class Player {
                 int compRowShot = random.nextInt(TestMain.ROW);
                 int compColShot = random.nextInt(TestMain.COL);
 
-                if(Objects.equals(playerMap.getSymbol(compRowShot,compColShot), " ")) {
+                if(checkGameCell(compRowShot, compColShot, " ")) {
                     playerMap.setSymbol(compRowShot, compColShot, "-");
                     break;
                 }else {
-                    if(Objects.equals(playerMap.getSymbol(compRowShot,compColShot), "X")) {
-                        playerMap.setSymbol(compRowShot, compColShot, "!");
+                    if(checkGameCell(compRowShot, compColShot, "X")) {
+                        playerMap.setSymbol(compRowShot, compColShot, "*");
                         break;
                     }
                 }
             }
         }
+
+
         if (!player.isComputerPlayer) {
             while (true) {
                 System.out.println("Введите поочереди координаты строки и столбца для выстрела");
                 int userRowShot = new Scanner(System.in).nextInt();
                 int userColShot = new Scanner(System.in).nextInt();
                 if ((userRowShot < TestMain.ROW) && (userColShot < TestMain.COL)) {
-                    if (Objects.equals(playerMap.getSymbol(userRowShot,userColShot), " ")) {
+                    if (checkGameCell(userRowShot, userColShot, " ")) {
                         playerMap.setSymbol(userRowShot, userColShot,  "-");
                         break;
                     } else {
-                        if (Objects.equals(playerMap.getSymbol(userRowShot, userColShot), "X")) {
+                        if (checkGameCell(userRowShot, userColShot, "X")) {
                            playerMap.setSymbol(userRowShot,userColShot, "!");
                             break;
                         }
@@ -88,6 +127,11 @@ public class Player {
                 else System.out.println("Вы стреляете за карту, повторите ввод координат");
             }
         }
+    }
+
+
+    public boolean checkGameCell(int row, int col, String symbol) {
+        return Objects.equals(playerMap.getSymbol(row, col), symbol);
     }
 
     String setDefaultName() {

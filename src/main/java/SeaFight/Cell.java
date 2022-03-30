@@ -1,3 +1,5 @@
+package SeaFight;
+
 public class Cell {
 
     private final int row;
