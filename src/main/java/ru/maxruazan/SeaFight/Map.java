@@ -36,14 +36,6 @@ public class Map {
     public boolean isEmpty(int i, int j) {
         return Objects.equals(map[i][j], " ");
     }
-
-    public void setMissSymbol(int i, int j) {
-        map[i][j] = "-";
-    }
-    public void setTrueShotSymbol(int i, int j) {
-        map[i][j] = "!";
-    }
-
     public String getSymbol(int i, int j){
         return map[i][j];
     }

@@ -16,10 +16,6 @@ public class Player {
 
 List<String> allCoordinates = createShipCoordinate();
 
-    public List<String> getAllCoordinates() {
-        return allCoordinates;
-    }
-
     List<String> defaultNames = new ArrayList<>();
     List<String> defaultCountries = new ArrayList<>();
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Gameplay {
-    Ships ships = new Ships();
     List<Player> playerList = new ArrayList<>();
     Player player1 = new Player().setParameters();
     Player player2 = new Player().setParameters();
