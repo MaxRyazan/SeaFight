@@ -8,8 +8,16 @@ public class Map {
  public String[][] map = new String[TestMain.ROW][TestMain.COL];
 
     public static int enterMapSize() {
-        System.out.println("Введите размерность поля:");
-        return new Scanner(System.in).nextInt();
+        while ( true ) {
+            System.out.println("Введите размерность поля:");
+            int size = new Scanner(System.in).nextInt();
+            if (size > 5) {
+                return size;
+            }
+            else {
+                System.out.println("Карта должна быть больше 5 клеток.");
+            }
+        }
     }
 
     public void initializeMap() {

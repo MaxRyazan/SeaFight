@@ -11,26 +11,13 @@ public class Player {
   private   String name;
   private final Map playerMap;
 
-    List<String> lineShip = new ArrayList<>();
-    List<String> frigate = new ArrayList<>();
-    List<String> corvette = new ArrayList<>();
-    List<String> sloops = new ArrayList<>();
+  int capacity = checkMapSizeAndNumberOfShips();
 
 
-    public void setFrigate(List<String> frigate) {
-        this.frigate = frigate;
-    }
+List<String> allCoordinates = createShipCoordinate();
 
-    public void setCorvette(List<String> corvette) {
-        this.corvette = corvette;
-    }
-
-    public void setLineShip(List<String> lineShip) {
-        this.lineShip = lineShip;
-    }
-
-    public void setSloops(List<String> sloops) {
-        this.sloops = sloops;
+    public List<String> getAllCoordinates() {
+        return allCoordinates;
     }
 
     List<String> defaultNames = new ArrayList<>();
@@ -50,10 +37,6 @@ public class Player {
         this.name = name;
         this.playerMap = new Map();
         playerMap.initializeMap();
-    }
-
-    public boolean isComputerPlayer() {
-        return isComputerPlayer;
     }
 
     public String getCountry() {
@@ -155,6 +138,47 @@ public class Player {
         Random random = new Random();
         return  defaultCountries.get(random.nextInt(6));
     }
+
+    public  int  checkMapSizeAndNumberOfShips() {
+        if (TestMain.COL == 6) {
+            return   16;
+            }
+        if (TestMain.COL >= 7 && TestMain.COL < 11) {
+            return   26;
+        }
+        if (TestMain.COL >= 11) {
+            return   37;
+        }
+        return 0;
+    }
+
+
+    public List<String> createShipCoordinate() {
+        List<String> listOfAllCoordinates = new ArrayList<>();
+        Random random = new Random();
+        for (int i = 0; i < capacity; i++) {
+            while (true) {
+                String row = Integer.toString(random.nextInt(TestMain.ROW));
+                String col = Integer.toString(random.nextInt(TestMain.ROW));
+                String temp = row + " " + col;
+                if (isUniq(temp, listOfAllCoordinates)) {
+                    listOfAllCoordinates.add(temp);
+                    break;
+                }
+            }
+        }
+        return listOfAllCoordinates;
+    }
+
+    boolean isUniq(String temp, List<String> listOfAllCoordinates) {
+        for (String listOfAllCoordinate : listOfAllCoordinates) {
+            if (temp.equals(listOfAllCoordinate)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     @Override
     public String toString() {

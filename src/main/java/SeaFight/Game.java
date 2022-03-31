@@ -2,11 +2,11 @@ package SeaFight;
 
 public class Game {
 
-    private Map map;
-    private Gameplay gameplay;
-    private Printer printer;
-    private WinCheck winCheck;
-    private Ships ships;
+    private final Map map;
+    private final Gameplay gameplay;
+    private final Printer printer;
+    private final WinCheck winCheck;
+    private final Ships ships;
 
 
     public Game(final Map map, final Gameplay gameplay, final Printer printer, final WinCheck winCheck, final Ships ships) {
@@ -20,7 +20,7 @@ public class Game {
     void play() {
         gameplay.fillListOfPlayers();
         for(Player thisPlayer :gameplay.playerList) {
-            gameplay.checkMapSizeAndCreateShips(thisPlayer);
+            thisPlayer.createShipCoordinate();
             gameplay.shipsLocalization(thisPlayer);
         }
 
