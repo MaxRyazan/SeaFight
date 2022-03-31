@@ -1,8 +1,4 @@
-package SeaFight;
-
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+package ru.maxruazan.SeaFight;
 
 public class Ships {
 

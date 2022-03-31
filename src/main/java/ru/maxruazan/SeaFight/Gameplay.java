@@ -1,8 +1,7 @@
-package SeaFight;
+package ru.maxruazan.SeaFight;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Gameplay {
     Ships ships = new Ships();

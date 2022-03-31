@@ -1,4 +1,4 @@
-package SeaFight;
+package ru.maxruazan.SeaFight;
 
 public class Printer {
 
