@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: spring-SeaFight.aspects
-Automatic-Module-Name: spring.SeaFight.aspects
-Implementation-Version: 5.3.17
-Created-By: 1.8.0_322 (Oracle Corporation)
-
