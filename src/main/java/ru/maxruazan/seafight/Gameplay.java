@@ -1,8 +1,10 @@
-package ru.maxruazan.SeaFight;
+package ru.maxruazan.seafight;
+
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class Gameplay {
     List<Player> playerList = new ArrayList<>();
     Player player1 = new Player().setParameters();
@@ -13,8 +15,6 @@ public class Gameplay {
         playerList.add(player1);
         playerList.add(player2);
     }
-
-
 
 
     void shipsLocalization(Player player) {

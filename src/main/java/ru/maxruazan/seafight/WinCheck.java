@@ -1,7 +1,9 @@
-package ru.maxruazan.SeaFight;
+package ru.maxruazan.seafight;
+
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
-
+@Component
 public class WinCheck {
 
     boolean check(Gameplay gameplay) {

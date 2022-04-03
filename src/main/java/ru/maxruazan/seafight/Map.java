@@ -1,8 +1,12 @@
-package ru.maxruazan.SeaFight;
+package ru.maxruazan.seafight;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 import java.util.Scanner;
-
+@Component
+@Scope("prototype")
 public class Map {
 
  public String[][] map = new String[TestMain.ROW][TestMain.COL];
@@ -31,7 +35,6 @@ public class Map {
     public String[][] getMap() {
         return map;
     }
-
 
     public boolean isEmpty(int i, int j) {
         return Objects.equals(map[i][j], " ");

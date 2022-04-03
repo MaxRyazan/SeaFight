@@ -1,4 +1,4 @@
-package ru.maxruazan.SeaFight;
+package ru.maxruazan.seafight;
 
 public class TestMain {
 

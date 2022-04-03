@@ -1,10 +1,13 @@
-package ru.maxruazan.SeaFight;
+package ru.maxruazan.seafight;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Component
+@Scope("prototype")
 public class Player {
   private   boolean isComputerPlayer;
   private   String country;
@@ -18,8 +21,6 @@ List<String> allCoordinates = createShipCoordinate();
 
     List<String> defaultNames = new ArrayList<>();
     List<String> defaultCountries = new ArrayList<>();
-
-
 
 
     public Map getPlayerMap() {

@@ -1,5 +1,8 @@
-package ru.maxruazan.SeaFight;
+package ru.maxruazan.seafight;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Printer {
 
 

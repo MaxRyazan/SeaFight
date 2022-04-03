@@ -1,5 +1,9 @@
-package ru.maxruazan.SeaFight;
+package ru.maxruazan.seafight;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Game {
 
     private final Gameplay gameplay;
@@ -7,7 +11,7 @@ public class Game {
     private final WinCheck winCheck;
 
 
-
+@Autowired
     public Game(final Gameplay gameplay, final Printer printer, final WinCheck winCheck) {
         this.gameplay = gameplay;
         this.printer = printer;
